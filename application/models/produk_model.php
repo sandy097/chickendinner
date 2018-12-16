@@ -10,41 +10,41 @@ class Produk_model extends CI_Model
 	
 	public function daftar_produk()
 	{
-		return $this->db->get('produk')->result();
+		return $this->db->get('products')->result();
 	}
 	
 	public function select_by_id($id)
 	{
-		$this->db->where('id',$id);
-		return $this->db->get('produk')->row();
+		$this->db->where('product_id',$id);
+		return $this->db->get('products')->row();
 	}
 	
 	public function tambah_produk($data)
 	{
-		$this->db->insert('produk',$data);
+		$this->db->insert('products',$data);
 	}
 	
 	public function edit_produk($id,$data)
 	{
-		$this->db->where('id',$id);
-		$this->db->update('produk',$data);
+		$this->db->where('product_id',$id);
+		$this->db->update('products',$data);
 	}
 	
 	public function delete_produk($id)
 	{
-		$this->db->where('id',$id);
-		$this->db->delete('produk');
+		$this->db->where('product_id',$id);
+		$this->db->delete('products');
 	}
 	
 	public function select_kategori($kategori)
 	{
-		$this->db->where('kategori',$kategori);
-		return $this->db->get('produk')->result();
+		$this->db->where('category_id',$kategori);
+		return $this->db->get('products')->result();
 	}
 	
 	public function insert_order($data)
 	{
-		$this->db->insert('order',$data);
+		$this->db->insert('orders',$data);
 	}
 	
 	public function process()
@@ -53,7 +53,7 @@ class Produk_model extends CI_Model
 			'date' => date('Y-m-d H:i:s'),
 			'due_date' => date('Y-m-d H:i:s', mktime(date('H'),date('i'),date('s'),date('m'),date('d') + 1,date('Y'))),
 			'status' => 'unpaid',
-			'nama' => $this->input->post('nama',true),
+			'name' => $this->input->post('nama',true),
 			'nope' => $this->input->post('nope',true),
 			'alamat' => $this->input->post('alamat',true),
 		);
@@ -95,17 +95,17 @@ class Produk_model extends CI_Model
 		$this->db->where('username',$username);
 		$this->db->where('password',$password);
 		
-		return $this->db->get('admin')->row();
+		return $this->db->get('users')->row();
 	}
 	
 	public function insert_konfirmasi($data)
 	{
-		$this->db->insert('konfirmasi',$data);
+		$this->db->insert('confirmation',$data);
 	}
 	
 	public function all_konfirmasi()
 	{
-		return $this->db->get('konfirmasi')->result();
+		return $this->db->get('confirmation')->result();
 	}
 	
 	public function detail_konfirmasi($invoice_id)
@@ -118,9 +118,12 @@ class Produk_model extends CI_Model
 	public function cariproduk($keyword)
 	{
 		$this->db->select('*');
-			$this->db->from('produk');
-			$this->db->like('brand',$keyword);
-			$this->db->or_like('model',$keyword);
+			$this->db->from('products');
+			$this->db->like('product_name',$keyword);
+			$this->db->or_like('writer',$keyword);
+			$this->db->or_like('publisher',$keyword);
+			$this->db->or_like('detail',$keyword);
+			$this->db->or_like('isbn',$keyword);
 			return $this->db->get()->result();
 	}
 

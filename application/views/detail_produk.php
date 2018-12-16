@@ -29,14 +29,13 @@
 <!-- Sidebar end=============================================== -->
 <div class="span9">
     <ul class="breadcrumb">
-    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-    <li><a href="products.html">Products</a> <span class="divider">/</span></li>
-    <li class="active">product Details</li>
+    <li><a href="<?php echo site_url('welcome');?>">Home</a> <span class="divider">/</span></li>
+    <li class="active">Product Details</li>
     </ul>	
-	<div class="row">	  
+	<div class="row">	
 			<div id="gallery" class="span3">
-            <a href="<?php echo base_url('uploads/'.$produk->gambar);?>" title="<?php echo $produk->brand;?> <?php echo $produk->model;?>">
-				<img src="<?php echo base_url('uploads/'.$produk->gambar);?>" style="width:100%" alt="<?php echo $produk->brand;?> <?php echo $produk->model;?>"/>
+            <a href="<?php echo base_url('uploads/'.$products->image);?>" title="<?php echo $products->product_name;?> <?php echo $products->writer;?>">
+				<img src="<?php echo base_url('uploads/'.$products->image);?>" style="width:100%" alt="<?php echo $products->product_name;?> <?php echo $products->writer;?>"/>
             </a>
 			  
 			 <div class="btn-toolbar">
@@ -51,12 +50,13 @@
 			</div>
 			</div>
 			<div class="span6">
-				<h3><?php echo $produk->brand;?> <?php echo $produk->model;?>  </h3>
-				<small>- <?php echo $produk->dimensi;?></small>
+				<h3><?php echo $products->product_name;?> <?php echo $products->writer;?>  </h3>
+				<small>Kategori: <?php echo $products->sub_category;?></small><br/>
+				<small>Berat: <?php echo $products->weight;?> kg</small>
 				<hr class="soft"/>
-				<form action="<?php echo site_url('welcome/add_to_cartdetail/'.$produk->id);?>" class="form-horizontal qtyFrm">
+				<form action="<?php echo site_url('welcome/add_to_cartdetail/'.$products->product_id);?>" class="form-horizontal qtyFrm">
 				  <div class="control-group">
-					<label class="control-label"><span>Rp. <?php echo number_format($produk->harga,0,',','.');?></span></label>
+					<label class="control-label"><span>Rp. <?php echo number_format($products->price,0,',','.');?></span></label>
 					<div class="controls">
 					  <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
 					</div>
@@ -74,15 +74,16 @@
 			  <h4>Product Information</h4>
                 <table class="table table-bordered">
 				<tbody>
-				<tr class="techSpecRow"><th colspan="2">Product Details</th></tr>
-				<tr class="techSpecRow"><td class="techSpecTD1">Brand: </td><td class="techSpecTD2"><?php echo $produk->brand;?></td></tr>
-				<tr class="techSpecRow"><td class="techSpecTD1">Model:</td><td class="techSpecTD2"><?php echo $produk->model;?></td></tr>
-				<tr class="techSpecRow"><td class="techSpecTD1">Released on:</td><td class="techSpecTD2"> 2011-01-28</td></tr>
-				<tr class="techSpecRow"><td class="techSpecTD1">Dimensions:</td><td class="techSpecTD2"> <?php echo $produk->dimensi;?></td></tr>
+				<tr class="techSpecRow"><th colspan="2">Information</th></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Nama Buku: </td><td class="techSpecTD2"><?php echo $products->product_name;?></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Penulis:</td><td class="techSpecTD2"><?php echo $products->writer;?></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Penerbit:</td><td class="techSpecTD2"><?php echo $products->publisher;?></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">ISBN:</td><td class="techSpecTD2"> <?php echo $products->isbn;?></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Stok:</td><td class="techSpecTD2"> <?php echo $products->stock;?></td></tr>
 				</tbody>
 				</table>
 				
-				<?php echo $produk->keterangan;?>
+				<?php echo $products->detail;?>
 
           </div>
 

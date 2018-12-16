@@ -12,25 +12,25 @@ class Welcome extends CI_Controller {
 	
 	public function index()
 	{
-		$data['produk'] = $this->produk_model->daftar_produk();
+		$data['products'] = $this->produk_model->daftar_produk();
 		$this->load->view('welcome_message',$data);
 	}
 	
 	public function kategori($kategori)
 	{
-		$data['produk'] = $this->produk_model->select_kategori($kategori);
+		$data['products'] = $this->produk_model->select_kategori($kategori);
 		$this->load->view('welcome_message',$data);
 	}
 	
 	public function add_to_cart($id)
 	{
 		$produk = $this->produk_model->select_by_id($id);
-		$nama = $produk->brand.' '.$produk->model;
+		$nama = $produk->product_name.' '.$produk->writer;
 		$data = array(
-						'id' => $produk->id,
+						'order_id' => $produk->id,
 						'qty' => 1,
 						'price' => $produk->harga,
-						'name' => $nama
+						'options' => $nama
 		);
 		
 		$this->cart->insert($data);
@@ -45,7 +45,7 @@ class Welcome extends CI_Controller {
 						'id' => $produk->id,
 						'qty' => 1,
 						'price' => $produk->harga,
-						'name' => $nama
+						'product_name' => $nama
 		);
 		
 		$this->cart->insert($data);
@@ -86,7 +86,7 @@ class Welcome extends CI_Controller {
 	
 	public function detailproduk($id)
 	{
-		$data['produk'] = $this->produk_model->select_by_id($id);
+		$data['products'] = $this->produk_model->select_by_id($id);
 		$this->load->view('detail_produk',$data);
 	}
 	
@@ -121,7 +121,7 @@ class Welcome extends CI_Controller {
 	{
 
 		$keyword = $this->input->post('keyword');
-		$data['produk']=$this->produk_model->cariproduk($keyword);
+		$data['products']=$this->produk_model->cariproduk($keyword);
 		$this->load->view('v_cari',$data);
 
 		/*

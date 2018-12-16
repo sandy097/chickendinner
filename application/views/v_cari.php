@@ -31,13 +31,13 @@
 			
 		<h4>Latest Products </h4>
 			  <ul class="thumbnails">
-			  <?php foreach($produk as $produk): ?>
+			  <?php foreach($products as $produk): ?>
 				<li class="span3">
 				  <div class="thumbnail">
 				  <p style="min-height:160px;">
-					<a  href="<?php echo site_url('welcome/detailproduk/'.$produk->id);?>">
+					<a  href="<?php echo site_url('welcome/detailproduk/'.$produk->product_id);?>">
 						<?php 
-							$product_image = ['src'=>'uploads/' . $produk->gambar,
+							$product_image = ['src'=>'uploads/' . $produk->image,
 								'width'=>'160',
 								'height'=>'160'];
 							echo img($product_image);
@@ -45,10 +45,10 @@
 					</a>
 					</p>
 					<div class="caption">
-					  <h5><?php echo $produk->brand;?> <?php echo $produk->model;?></h5>
+					  <h5><?php echo $produk->product_name;?> <?php echo $produk->writer;?></h5>
 					 
 					 
-					  <h4 style="text-align:center"><a class="btn" href="<?php echo site_url('welcome/detailproduk/'.$produk->id);?>"> <i class="icon-zoom-in"></i></a> <a class="btn" href="<?php echo site_url('welcome/add_to_cart/'.$produk->id);?>">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp. <?php echo number_format($produk->harga,0,',','.');?></a></h4>
+					  <h4 style="text-align:center"><a class="btn" href="<?php echo site_url('welcome/detailproduk/'.$produk->product_id);?>"> <i class="icon-zoom-in"></i></a> <a class="btn" href="<?php echo site_url('welcome/add_to_cart/'.$produk->product_id);?>">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp. <?php echo number_format($produk->price,0,',','.');?></a></h4>
 					</div>
 				  </div>
 				</li>
